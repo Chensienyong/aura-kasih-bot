@@ -1,0 +1,22 @@
+{
+  "name": "aura-kasih-bot",
+  "version": "1.0.0",
+  "description": "Unknown Queries Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chensienyong/aura-kasih-bot.git"
+  },
+  "author": "Jetee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chensienyong/aura-kasih-bot/issues"
+  },
+  "homepage": "https://github.com/Chensienyong/aura-kasih-bot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.29.0"
+  }
+}
