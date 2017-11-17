@@ -19,8 +19,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post(`/bot${TOKEN}`, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
+    /* res.sendStatus(200); */
+    res.write(JSON.stringify(req.body));
 });
 
 app.get('/', function(req, res){
