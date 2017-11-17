@@ -18,11 +18,11 @@ const group_id = -296076031
 //data={'chat_id': 12345, 'text': 'hello friend'}
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post(`/bot${TOKEN}`, (req, res) => {
-    console.log('body is ',req);
+    console.log('body is ',req  );
     res.sendStatus(200);
 });
 
