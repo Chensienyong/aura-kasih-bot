@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post(`/bot${TOKEN}`, (req, res) => {
-    console.log('body is ',req.body);
+    console.log('body is ',req);
     res.sendStatus(200);
 });
 
