@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post(`/bot${TOKEN}`, (req, res) => {
-    bot.sendMessage(group_id, req.body.stringify());
+    bot.sendMessage(group_id, JSON.stringify(req.body));
     res.sendStatus(200);
 });
 
