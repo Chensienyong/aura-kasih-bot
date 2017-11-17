@@ -4,8 +4,9 @@ Promise.config({
   });
 const TelegramBot = require('node-telegram-bot-api');
 const TOKEN = '461308497:AAEN6IgZUOPvBrnD11zEjTv6QxpgjkT6zMI';
-const url = 'https://aura-kasih-bot.herokuapp.com/';
-const port = 8000;
+// const url = 'https://aura-kasih-bot.herokuapp.com/';
+const url = 'http://local.host:8000';
+const port = process.env.PORT || 8000;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -20,6 +21,10 @@ app.use(bodyParser.json());
 app.post(`/bot${TOKEN}`, (req, res) => {
     bot.processUpdate(req.body);
     res.sendStatus(200);
+});
+
+app.get('/', function(req, res){
+    res.send('hello world');
 });
 
 bot.on('message', (msg) => {
