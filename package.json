@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NTBA_FIX_319=true node index.js"
+    "start": "export NTBA_FIX_319=true || set NTBA_FIX_319=true && node index.js"
   },
   "repository": {
     "type": "git",
