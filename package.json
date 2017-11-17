@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "NTBA_FIX_319=true node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Chensienyong/aura-kasih-bot#readme",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "node-telegram-bot-api": "^0.29.0"
   }
 }
