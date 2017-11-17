@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 app.post(`/bot${TOKEN}`, (req, res) => {
     /* res.sendStatus(200); */
-    res.send(req);
+    res.send(JSON.stringify(req));
 });
 
 app.get('/', function(req, res){
