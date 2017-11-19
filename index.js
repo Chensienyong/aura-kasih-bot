@@ -30,10 +30,12 @@ app.post(`/bot${TOKEN}`, (req, res) => {
     if (report_stuff.reason) {
         message += `\*Alasan pelaporan:\* ${report_stuff.reason}\n\n`;
     }
+    console.log(message)
     message += `Engineers yang mungkin terlibat:\n`;
     report_stuff.blamed_users.forEach(function(entry) {
-        message += `- \`${entry.line}\` - \*${entry.name}\*,\nkarena commit di PR: *${entry.pull_requests}*\n`;
+        message += `- \`${entry.line}\` - \*${entry.name}\*, karena commit di PR: *${entry.pull_requests}*\n`;
     });
+    console.log(message)
     bot.sendMessage(group_id, message, {
       parse_mode: "Markdown"
     });
