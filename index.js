@@ -22,7 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post(`/bot${TOKEN}`, (req, res) => {
-    bot.sendMessage(group_id, JSON.stringify(req.body));
+    console.log(req.body);
+    report_stuff = req.body;
+    message = report_stuff.reporter_name + " gay!";
+    bot.sendMessage(group_id, message);
     res.sendStatus(200);
 });
 
