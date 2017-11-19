@@ -25,18 +25,14 @@ app.post(`/bot${TOKEN}`, (req, res) => {
     console.log(req.body);
     report_stuff = req.body;
     message = `Ada Laporan Query ${(report_stuff.type == 'mysql') ? "MySQL" : "Mongo"} dari ${report_stuff.reporter_name}<__[${report_stuff.reporter_email}](mailto:${report_stuff.reporter_email})__>!\n`;
-    message += `\`\`\`` + report_stuff.query.toString() + `\`\`\`\n`;
-    message += `\`\`\`Hackathon Testathon\`\`\``;
-    console.log(message)
+    message += `\`` + report_stuff.query.toString() + `\`\n`;
     if (report_stuff.reason) {
         message += `\*Alasan pelaporan:\* ${report_stuff.reason}\n\n`;
     }
-    console.log(message)
     message += `Engineers yang mungkin terlibat:\n`;
     report_stuff.blamed_users.forEach(function(entry) {
         message += `- \`${entry.line}\` - \*${entry.name}\*, karena commit di PR: *${entry.pull_requests}*\n`;
     });
-    console.log(message)
     bot.sendMessage(group_id, message, {
       parse_mode: "Markdown"
     });
