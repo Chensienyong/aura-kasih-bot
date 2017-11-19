@@ -24,7 +24,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post(`/bot${TOKEN}`, (req, res) => {
     console.log(req.body);
     report_stuff = req.body;
-    message = report_stuff.reporter_name + " gay!";
+    message = `
+        **Ada Laporan Query ${(report_stuff.type == 'mysql') ? "MySQL" : "Mongo"} dari ${report_stuff.reporter_name}<__${report_stuff.reporter_email}__>!\n**
+        \`\`\`${report_stuff.query}\`\`\`\n
+        Alasan pelaporan: ${report_stuff.reason}\n\n
+        Engineers yang mungkin terlibat:\n
+    `;
+    report_stuff.blamed_users.forEach(function(entry) {
+        message += `
+            - \`\`\`${entry.line}\`\`\` - ${entry.name},\n
+            karena commit di PR: ${entry.pull_requests}
+        `
+    });
     bot.sendMessage(group_id, message);
     res.sendStatus(200);
 });
