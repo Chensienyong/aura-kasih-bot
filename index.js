@@ -25,7 +25,7 @@ app.post(`/bot${TOKEN}`, (req, res) => {
     console.log(req.body);
     report_stuff = req.body;
     message = `\*\*Ada Laporan Query ${(report_stuff.type == 'mysql') ? "MySQL" : "Mongo"} dari ${report_stuff.reporter_name}<__[${report_stuff.reporter_email}](mailto:${report_stuff.reporter_email})__>!\n\*\*`;
-    message += `\`\`\`` + ${report_stuff.query}.toString() + `\`\`\`\n`;
+    message += `\`\`\`` + report_stuff.query.toString() + `\`\`\`\n`;
     if (report_stuff.reason) {
         message += `\*\*Alasan pelaporan:\*\* ${report_stuff.reason}\n\n`;
     }
