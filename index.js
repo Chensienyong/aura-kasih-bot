@@ -24,15 +24,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post(`/bot${TOKEN}`, (req, res) => {
     console.log(req.body);
     report_stuff = req.body;
-    message = `Ada Laporan Query ${(report_stuff.type == 'mysql') ? "MySQL" : "Mongo"} dari ${report_stuff.reporter_name}<__[${report_stuff.reporter_email}](mailto:${report_stuff.reporter_email})__>!\n`;
+    message = `Ada Laporan Query dari ${report_stuff.reporter_name}<__[${report_stuff.reporter_email}](mailto:${report_stuff.reporter_email})__>!\n`;
     message += `\`` + report_stuff.query.toString() + `\`\n`;
     if (report_stuff.reason) {
         message += `\*Alasan pelaporan:\* ${report_stuff.reason}\n\n`;
     }
-    message += `Engineers yang mungkin terlibat:\n`;
-    report_stuff.blamed_users.forEach(function(entry) {
-        message += `- \`${entry.line}\` - \*${entry.name}\*, karena commit di PR: *${entry.pull_requests}*\n`;
-    });
+    message += `Engineer yang mungkin terlibat:\n`;
+    message += `\*${report_stuff.author.author_name}\*<__[${report_stuff.author.author_mail}](mailto:${report_stuff.author.author_mail})__>\n`;
+    message += `Query dipanggil di method \`${report_stuff.author.file.method_name}\` dalam file \`${report_stuff.author.file.path}:${report_stuff.author.file.line_no}\`\n`
+    if (report_stuff.author.pull_request.link) {
+        message += `\*PR\*: ${report_stuff.author.pull_request.link}`
+    } else {
+        message += `\*Commit Message\*: ${report_stuff.author.pull_request.title}`
+    }
     bot.sendMessage(group_id, message, {
       parse_mode: "Markdown"
     });
