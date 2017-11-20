@@ -31,12 +31,12 @@ app.post(`/bot${TOKEN}`, (req, res) => {
     }
     message += `Engineer yang mungkin terlibat:\n`;
     message += `\*${report_stuff.author.author_name}\*<__[${report_stuff.author.author_mail}](mailto:${report_stuff.author.author_mail})__>\n`;
-    message += `Query dipanggil di method \`${report_stuff.author.file.method_name}\` dalam file \`${report_stuff.author.file.path}:${report_stuff.author.file.line_no}\`\n`
     if (report_stuff.author.pull_request.link) {
-        message += `\*PR\*: ${report_stuff.author.pull_request.link}`
+        message += `\*Pull Request\*: ${report_stuff.author.pull_request.link}\n`
     } else {
-        message += `\*Commit Message\*: ${report_stuff.author.pull_request.title}`
+        message += `\*Commit Message\*: ${report_stuff.author.pull_request.title}\n`
     }
+    message += `Query dipanggil di dalam file \`${report_stuff.author.file.path}:${report_stuff.author.file.line_no}\`, nama method: \`${report_stuff.author.file.method_name || '-'}\``
     bot.sendMessage(group_id, message, {
       parse_mode: "Markdown"
     });
